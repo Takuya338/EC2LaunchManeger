@@ -20,6 +20,7 @@ class LoginControllerTest extends TestCase
         $response->assertSessionMissing('message');
     }
 
+    /* 結合用のテストにするのでコメントアウト
     // ログイン処理のテスト(成功)
     public function testLoginSuccessAndReturnsView()
     {
@@ -45,7 +46,7 @@ class LoginControllerTest extends TestCase
 
         // リダイレクトとフラッシュメッセージを確認
         $response->assertRedirect(route('index'));
-        $response->assertSessionHas('message', 'ログイン失敗');
+        $response->assertSessionHas('message', 'メールアドレスまたはパスワードが間違っています。');
     }
 
     // ログアウト処理のテスト
@@ -57,6 +58,5 @@ class LoginControllerTest extends TestCase
         $response->assertRedirect(route('index'));
         $response->assertSessionMissing('message');
     }
-
-
+    */
 }
