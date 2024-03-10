@@ -1,5 +1,11 @@
 <?php
-
+/*
+ *
+ * web.php
+ * 2024/03/10 後藤卓也
+ * ルーティング一覧  
+ *
+ */
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'App\Http\Controllers\LoginController@index')->name('index');          // ログイン画面
+Route::post('/login', 'App\Http\Controllers\LoginController@login')->name('login');    // ログイン処理(EC2設定表示画面)
+Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');  // ログアウト処理
