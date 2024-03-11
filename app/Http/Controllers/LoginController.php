@@ -10,7 +10,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Logic\ViewLogic;  // ロジッククラスをインポート
-use App\AWS\Logic;        // ロジッククラスをインポート
 
 class LoginController extends Controller
 {
@@ -22,8 +21,7 @@ class LoginController extends Controller
     public function __construct()
     {
         // ここに初期化のコードを書く
-        $logic = new Logic();  // ロジッククラスのインスタンスを生成
-        $this->logic = new ViewLogic($logic);  // ロジッククラスのインスタンスを生成
+        $this->logic = new ViewLogic();  // ロジッククラスのインスタンスを生成
     }
 
     /*
@@ -51,7 +49,7 @@ class LoginController extends Controller
             return redirect()->route('index')->with('message', $result['message']);
         } else {
             // ログイン成功
-            return view('ec2set', $result);
+            return view('ec2set', ['datas' => $result]);
         }
     }
 
