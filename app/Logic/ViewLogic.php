@@ -10,7 +10,10 @@
 namespace App\Logic;
 
 use App\AWS\Logic;         // ロジッククラスをインポート
+use App\AWS\LogicStub;     // ロジッククラス(スタブ)をインポート
 use App\Enums\ResultCode;  // 処理結果の定数をインポート
+
+//define('LogicStub', 0);  // ロジッククラスのスタブを使う場合のコメントをはずす
 
 class ViewLogic
 {
@@ -20,9 +23,15 @@ class ViewLogic
      * コンストラクタは Logic インスタンスを受け取るように変更します。
      * これにより、テスト時にスタブを注入することができます。
      */
-    public function __construct(Logic $logic)
+    public function __construct()
     {
-        $this->logic = $logic;
+        if (defined('LogicStub')) {
+            // ロジッククラスのスタブを使う場合
+            $this->logic = new LogicStub();
+        } else {
+            // 本番時は Logic クラスを使う
+            $this->logic = new Logic();
+        }
     }
 
     /*
