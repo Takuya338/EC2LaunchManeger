@@ -32,7 +32,7 @@ class LoginController extends Controller
     public function index(Request $request)
     {
         // ログイン画面を表示
-        return view('index');
+        return view('index', ['title' => 'EC2起動管理システム']);
     }
 
     /*
@@ -49,7 +49,7 @@ class LoginController extends Controller
             return redirect()->route('index')->with('message', $result['message']);
         } else {
             // ログイン成功
-            return view('ec2set', ['datas' => $result]);
+            return view('ec2set', ['datas' => $result, 'title' => 'インスタンス情報']);
         }
     }
 
